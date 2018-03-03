@@ -1,0 +1,4 @@
+db:
+  host: /var/run/postgresql
+  port: 5432
+  database: database
