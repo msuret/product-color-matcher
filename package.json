@@ -1,0 +1,23 @@
+{
+  "name": "product-color-matcher",
+  "version": "1.0.0",
+  "description": "An API to match similar color products",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msuret/product-color-matcher.git"
+  },
+  "keywords": [
+    "color",
+    "matching"
+  ],
+  "author": "Maxime Suret",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msuret/product-color-matcher/issues"
+  },
+  "homepage": "https://github.com/msuret/product-color-matcher#readme"
+}
