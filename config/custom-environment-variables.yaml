@@ -1,1 +1,7 @@
-db: DATABASE_URL
+db:
+  host: DB_HOST
+  port: DB_PORT
+  database: DB_NAME
+  user: DB_USER
+  password: DB_PASSWORD
+  max: DB_MAX_POOL_SIZE
