@@ -2,3 +2,25 @@ db:
   host: /var/run/postgresql
   port: 5432
   database: database
+
+logging:
+  sql:
+    console:
+      level: info
+      colorize: true
+  http:
+    console:
+      level: info
+      colorize: true
+# You can configure logging that way:
+#logging:
+#  sql:
+#    console:
+#      level: warn
+#      colorize: true
+#    file:
+#       level: error
+#       timestamp: true
+#       filename: logs/sql.log,
+#       maxfiles: 5
+#       maxsize": 10485760

@@ -6,3 +6,4 @@ config/local*
 
 # Logs
 npm-debug.log*
+logs

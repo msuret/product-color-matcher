@@ -5,3 +5,7 @@ db:
   user: DB_USER
   password: DB_PASSWORD
   max: DB_MAX_POOL_SIZE
+  
+logging:
+  __name: LOGGING
+  __format: json

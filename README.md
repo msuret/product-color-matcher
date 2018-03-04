@@ -33,6 +33,39 @@ DB_PASSWORD=supersecretstuff
 DB_MAX_POOL_SIZE=
 ```
 
+### Logging
+
+Two loggers can be configured in the logging section:
+
+* sql: logs the SQL queries before execution
+* http: logs the HTTP requests via morgan
+
+[Winston-config](https://github.com/triplem/winston-config) is used internally to configure logging. Please refer to the module documentation for the accepted configuration options.
+
+#### YAML
+
+```yaml
+logging:
+  sql:
+    console:
+      level: debug
+      colorize: true
+    file:
+       level: error
+       timestamp: true
+       filename: logs/sql.log
+       maxfiles: 5
+       maxsize: 10485760
+```
+
+#### Environment variables
+
+Logging configuration can be diverse, so you will have to pass it in json forrmat:
+
+```bash
+LOGGING='{"logging":{"sql":{"console":{"level":"warn","colorize":true},"file":{"level":"error","timestamp":true,"filename":"logs/sql.log,","maxfiles":5,"maxsize":10485760}}}}'
+```
+
 ## Migration
 
 Run this comand to install [PostgreSQL's cube extension](https://www.postgresql.org/docs/10/static/cube.html) and create the `products` table:
