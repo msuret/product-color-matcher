@@ -8,7 +8,13 @@ db:
 
 google-cloud:
   keyFile: GOOGLE_APPLICATION_CREDENTIALS
-  
+
+server:  
+  port: SERVER_PORT
+  clustering:
+    __name: SERVER_CLUSTERING
+    __format: json
+
 logging:
   __name: LOGGING
   __format: json

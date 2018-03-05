@@ -49,6 +49,24 @@ google-cloud:
 GOOGLE_APPLICATION_CREDENTIALS=/path/to/keyFile.json
 ```
 
+### Server
+
+#### YAML
+
+```yaml
+server:  
+  port: 10010
+  # If true, the application will be clustered in a number of processes equals to the number of CPU cores
+  clustering: true
+```
+
+#### Environment variables
+
+```bash
+SERVER_PORT=10010
+SERVER_CLUSTERING=true
+```
+
 ### Logging
 
 Two loggers can be configured in the logging section:
@@ -115,8 +133,17 @@ The file is streamed so memory consumption stays low even for large file. Rows a
 
 ## Color Detection
 
-The following commands detects the dominant color of each produc and persists it in database:
+The following command detects the dominant color of each produc and persists it in database:
 ```bash
 npm run detect-colors
 ```
 
+## API
+
+Start the server by runnnig `npm start`.
+
+- *List Products:* `GET /v1/products`
+  This endpoints accepts `offset` and `limit` query parameters (defaults values are respectively 0 and 10)
+- *Get product:* `GET /v1/products/{id}`
+- *Get product closest neighbours*: `GET /v1/products/{id}/neighbours`
+  This endpoints accepts a `limit` query parameter. Default value is 5.
