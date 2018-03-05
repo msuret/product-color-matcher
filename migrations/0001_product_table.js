@@ -10,11 +10,13 @@ exports.up = pgm => pgm.createTable(
     gender_id: 'character varying',
     composition: 'character varying',
     sleeve: 'character varying',
-    photo: 'character varying',
-    url: {
+    photo:  {
       type: 'character varying',
       notNull: true
-    }    
+    },
+    url: 'character varying',
+    color_rgb: 'cube',
+    color_lab: 'cube'
   },
   {ifNotExists: true}
 );

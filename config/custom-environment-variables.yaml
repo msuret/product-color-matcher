@@ -5,6 +5,9 @@ db:
   user: DB_USER
   password: DB_PASSWORD
   max: DB_MAX_POOL_SIZE
+
+google-cloud:
+  keyFile: GOOGLE_APPLICATION_CREDENTIALS
   
 logging:
   __name: LOGGING

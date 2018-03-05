@@ -8,7 +8,7 @@ You can either create a new file named `local.yaml` in the `config` folder, or u
 
 ### Database
 
-If no configuration is provided, the application wil attempt to connect a local database using [https://www.postgresql.org/docs/10/static/auth-methods.html#AUTH-PEER](peer authentication).
+If no configuration is provided, the application wil attempt to connect a local database using [peer authentication](https://www.postgresql.org/docs/10/static/auth-methods.html#AUTH-PEER).
 
 #### YAML
 
@@ -30,7 +30,23 @@ DB_PORT=5432
 DB_NAME=product_matching
 DB_USER=postgres
 DB_PASSWORD=supersecretstuff
-DB_MAX_POOL_SIZE=
+DB_MAX_POOL_SIZE=10
+```
+### Google Cloud Vision API
+
+You need to provide google application credentials to detect the dominant color of each product. Refer to [Google Cloud Documentation](https://cloud.google.com/docs/authentication/getting-started).
+
+#### YAML
+
+```yaml
+google-cloud:
+  keyFile: /path/to/keyFile.json
+```
+
+#### Environment variables
+
+```bash
+GOOGLE_APPLICATION_CREDENTIALS=/path/to/keyFile.json
 ```
 
 ### Logging
@@ -87,11 +103,20 @@ The supported columns are:
 * `photo`
 * `url`
 
-Only `id` and `url` are compulsory.
+Only `id` and `photo` are compulsory.
+Columns must be separated by a semicolon.
+
 Import is made with the following command:
 ```bash
 npm run import -- path/to/file.csv
 ```
 
 The file is streamed so memory consumption stays low even for large file. Rows are inserted by batches of 100 to limit round-trip delay time with the databaase.
+
+## Color Detection
+
+The following commands detects the dominant color of each produc and persists it in database:
+```bash
+npm run detect-colors
+```
 

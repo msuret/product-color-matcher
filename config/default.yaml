@@ -3,6 +3,10 @@ db:
   port: 5432
   database: database
 
+#see https://cloud.google.com/docs/authentication/getting-started for how to get google application credentials
+google-cloud:
+  keyFile: service-account-file.json
+
 logging:
   sql:
     console:
