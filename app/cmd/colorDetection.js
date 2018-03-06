@@ -23,11 +23,11 @@ bluebird.fromCallback(cb =>
           googleCloudClient.imageProperties(normalizeUrl(product.photo))
             .then(_.property('[0].imagePropertiesAnnotation.dominantColors.colors[0].color'))
             .then(color =>
-               //convert the color to Lab format and save it into database
                db.result(
                  'UPDATE products SET color_rgb = cube(ARRAY[${rgb.red},${rgb.green},${rgb.blue}]), color_lab = cube(ARRAY[${lab.l},${lab.a},${lab.b}]) WHERE id = ${id}',
                   {
                     rgb: color,
+                     //convert RGB to Lab format
                     lab: _.zipObject(['l', 'a', 'b'], colourProximity.rgb2lab([color.red, color.green, color.blue])),
                     id: product.id
                   }

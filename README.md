@@ -133,7 +133,7 @@ The file is streamed so memory consumption stays low even for large file. Rows a
 
 ## Color Detection
 
-The following command detects the dominant color of each produc and persists it in database:
+The following command detects the dominant color of each product and persists it in database:
 ```bash
 npm run detect-colors
 ```
@@ -145,5 +145,6 @@ Start the server by runnnig `npm start`.
 - *List Products:* `GET /v1/products`
   This endpoints accepts `offset` and `limit` query parameters (defaults values are respectively 0 and 10)
 - *Get product:* `GET /v1/products/{id}`
-- *Get product closest neighbours*: `GET /v1/products/{id}/neighbours`
+- *Get product closest neighbors*: `GET /v1/products/{id}/neighbors`
   This endpoints accepts a `limit` query parameter. Default value is 5.
+  The closest neighbors are determined according to the euclidian distance between the dominant color of the products in the [Lab color space](https://en.wikipedia.org/wiki/Lab_color_space). 
