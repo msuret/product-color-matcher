@@ -1,3 +1,5 @@
+"use strict"
+
 exports.up = pgm => pgm.createTable(
   'products',
   {
@@ -5,7 +7,7 @@ exports.up = pgm => pgm.createTable(
       type: 'character varying',
       primaryKey: true,
       notNull: true
-    },  
+    },
     title: 'character varying',
     gender_id: 'character varying',
     composition: 'character varying',

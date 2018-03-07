@@ -7,7 +7,8 @@
     "migrate": "node-pg-migrate",
     "import": "node app/cmd/productImport.js",
     "detect-colors": "node app/cmd/colorDetection.js",
-    "start": "node ."
+    "start": "node .",
+    "lint": "jshint app"
   },
   "repository": {
     "type": "git",
@@ -43,5 +44,23 @@
     "pg-query-stream": "1.1.1",
     "winston": "2.4.0",
     "winston-config": "0.5.1"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.5"
+  },
+  "jshintConfig": {
+    "node": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "freeze": true,
+    "funcscope": true,
+    "nocomma": true,
+    "nonew": true,
+    "strict": true,
+    "undef": true,
+    "unused": true,
+    "validthis": true,
+    "esversion": 6
   }
 }

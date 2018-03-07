@@ -1,3 +1,5 @@
+"use strict";
+
 const config = require('config');
 const bluebird = require('bluebird');
 const pgp = require('pg-promise');

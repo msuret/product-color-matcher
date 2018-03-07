@@ -1,3 +1,5 @@
+"use strict"
+
 exports.up = pgm => pgm.createIndex(
   'products',
   'color_lab',

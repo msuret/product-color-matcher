@@ -1,3 +1,5 @@
+"use strict";
+
 const fs = require('fs');
 const csv = require('csv-parser');
 const bulkStream = require('bulkstream');
@@ -20,7 +22,7 @@ db.tx(
           .pipe(csv({separator: ';'}))
           //make groups of 100 rows to insert in bulk
           .pipe(bulkStream.create(100))
-          .on('data', data => {
+          .on('data', data =>
             //"increment" rowCountPromise by the number of rows affected by this bulk upsert
             rowCountPromise = bluebird.join(
               rowCountPromise,
@@ -28,10 +30,10 @@ db.tx(
                    .get('rowCount'),
               _.add
             )
-          })
+          )
           //once the end of the file is reached, end the transaction as soon as all queries returned
           .on('close', ()  => rowCountPromise.asCallback(cb))
-      )
+      );
   }
 )
 .then(_.partial(console.log, 'Done, %i lines upserted'))

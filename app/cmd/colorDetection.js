@@ -1,3 +1,5 @@
+"use strict";
+
 const config = require('config');
 const QueryStream = require('pg-query-stream');
 const bluebird = require('bluebird');
