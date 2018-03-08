@@ -7,5 +7,10 @@ config/local*
 # Logs
 npm-debug.log*
 logs
+
+#foders generated during tests
 test-logs
+coverage
+.nyc_output
+
 nbproject

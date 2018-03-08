@@ -166,3 +166,13 @@ Start the server by runnnig `npm start`.
 - **Get product closest neighbors**: `GET /v1/products/{id}/neighbors`
   This endpoints accepts a `limit` query parameter (default is 5).
   The closest neighbors are determined according to the euclidian distance between the dominant color of the products in the [Lab color space](https://en.wikipedia.org/wiki/Lab_color_space). 
+  
+
+## Testing
+
+Tests use a real database, so make sure to configure a disposable database before running them.
+You can also create a `test-development.yaml` file in the `config` folder and setup your test database there.
+
+On the other hand calls to Google Vision API are mocked during tests (because they're expensive), so you don't need to configure valid credentials. 
+
+Simply run the tests with `npm test`.

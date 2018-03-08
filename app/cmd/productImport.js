@@ -12,8 +12,12 @@ const columns = new db.$config.pgp.helpers.ColumnSet(
   {table: 'products'}
 );
 
-//insert rows in a transaction to stay in a stable state (the file wil be either totally accepted or totally rejected)
+
+/**
+* Runs the product import command
+*/
 exports.run = csvFilePath =>
+     //insert rows in a transaction to stay in a stable state (the file wil be either totally accepted or totally rejected)
     db.tx(
       t => {
         let rowCountPromise = bluebird.resolve(0);

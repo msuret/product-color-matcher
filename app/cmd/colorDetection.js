@@ -8,15 +8,37 @@ const _ = require('lodash');
 const vision = require('@google-cloud/vision');
 const normalizeUrl = require('normalize-url');
 const colourProximity = require('colour-proximity');
+const Optional = require('optional-js');
 const db = require('../db');
 
-const googleCloudClient = new vision.ImageAnnotatorClient({
-  keyFilename: config.get('google-cloud.keyFile'),
-  promise: bluebird
-});
+/**
+* Updates the RGB & Lab Colors of the given row
+*/
+const updateColors = (productId, rgbColor) => 
+  Optional.ofNullable(rgbColor)
+    .map(rgb => db.result(
+       'UPDATE products SET color_rgb = cube(ARRAY[${rgb.red},${rgb.green},${rgb.blue}]), color_lab = cube(ARRAY[${lab.l},${lab.a},${lab.b}]) WHERE id = ${id}',
+        {
+          rgb,
+           //convert RGB to Lab format
+          lab: _.zipObject(['l', 'a', 'b'], colourProximity.rgb2lab([rgb.red, rgb.green, rgb.blue])),
+          id: productId
+        }
+     ).then(_.property('rowCount'))
+   )
+   .orElseGet(() =>bluebird.resolve(0));
 
-exports.run = () =>
-    bluebird.fromCallback(cb =>
+
+/**
+* Runs the color detection command
+*/
+exports.run = () => {
+    const googleCloudClient = new vision.ImageAnnotatorClient({
+      keyFilename: config.get('google-cloud.keyFile'),
+      promise: bluebird
+    });
+  
+    return bluebird.fromCallback(cb =>
       db.stream(
         new QueryStream('SELECT id, photo FROM products WHERE color_rgb IS NULL OR color_lab IS NULL'),
         stream => bluebird.resolve(
@@ -25,18 +47,7 @@ exports.run = () =>
               //get the dominant color from Google Cloud Vision API
               googleCloudClient.imageProperties(normalizeUrl(product.photo))
                 .then(_.property('[0].imagePropertiesAnnotation.dominantColors.colors[0].color'))
-                .then(color =>
-                   db.result(
-                     'UPDATE products SET color_rgb = cube(ARRAY[${rgb.red},${rgb.green},${rgb.blue}]), color_lab = cube(ARRAY[${lab.l},${lab.a},${lab.b}]) WHERE id = ${id}',
-                      {
-                        rgb: color,
-                         //convert RGB to Lab format
-                        lab: _.zipObject(['l', 'a', 'b'], colourProximity.rgb2lab([color.red, color.green, color.blue])),
-                        id: product.id
-                      }
-                   )
-                )
-                .then(_.property('rowCount'))
+                .then(_.partial(updateColors, product.id))
             ))
             .pipe(bluestream.reduce(_.add, 0))
             .promise()
@@ -47,3 +58,4 @@ exports.run = () =>
     .then(_.partial(console.log, 'Done, %d lines processed'))
     .catch(console.err)
     .finally(db.$pool.end);
+};

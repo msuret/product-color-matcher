@@ -2,3 +2,21 @@ server:
   port: 20020
   # using clustering would also fork tests
   clustering: false
+  
+logging:
+  sql:
+    console:
+      level: info
+      colorize: true
+    file:
+       level: debug
+       timestamp: true
+       filename: test-logs/sql.log
+  http:
+    console:
+      level: info
+      colorize: true
+    file:
+       level: debug
+       timestamp: true
+       filename: test-logs/http.log

@@ -7,9 +7,11 @@ const db = require('../app/db');
 
 describe('Import Command', () => {
 
+    
     before(() => {
         //prevent closing the database connection pool, we need it for other tests
         sinon.stub(db.$pool, "end");
+        return  db.none('TRUNCATE TABLE products');
     });
 
     it('should load CSV rows in database', () =>
