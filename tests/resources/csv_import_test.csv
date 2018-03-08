@@ -1,0 +1,3 @@
+id;title;gender_id;composition;sleeve;photo;url
+id0;title0;MAN;composition0;short;http://example.com/example1.jpg;http://example.com/example1
+id1;title1;WOM;composition1;long;http://example.com/example2.jpg;http://example.com/example2

@@ -8,5 +8,6 @@ exports.up = pgm => pgm.createIndex(
 
 exports.down = pgm => pgm.dropIndex(
   'products',
-  'color_lab'
+  'color_lab',
+  {ifExists: true}
 );

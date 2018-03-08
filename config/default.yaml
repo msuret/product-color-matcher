@@ -7,7 +7,7 @@ db:
 google-cloud:
   keyFile: service-account-file.json
 
-server:  
+server:
   port: 10010
   # If true, the application will be clustered in a number of processes equals to the number of CPU cores
   clustering: true
@@ -30,6 +30,6 @@ logging:
 #    file:
 #       level: error
 #       timestamp: true
-#       filename: logs/sql.log,
+#       filename: logs/sql.log
 #       maxfiles: 5
 #       maxsize": 10485760
