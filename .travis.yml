@@ -1,8 +1,6 @@
 language: node_js
 node_js:
 - 8
-services:
-  - postgresql
 addons:
   postgresql: "9.6"
 env:
@@ -12,3 +10,5 @@ env:
   - DB_USER="postgres"
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
+after_success:
+  - npm run coverage
