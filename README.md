@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/msuret/product-color-matcher.svg?branch=master)](https://travis-ci.org/msuret/product-color-matcher)
+[![Coverage Status](https://coveralls.io/repos/github/msuret/product-color-matcher/badge.svg?branch=master)](https://coveralls.io/github/msuret/product-color-matcher?branch=master)
+
 # product-color-matcher
 
 An API to match products of similar colors.
@@ -176,3 +179,5 @@ You can also create a `test-development.yaml` file in the `config` folder and se
 On the other hand, calls to Google Vision API are mocked during tests because they're expensive, so you don't need to configure valid credentials. 
 
 Simply run the tests with `npm test`.
+
+They are run automatically on [Travis-CI](https://travis-ci.org/msuret/product-color-matcher) and the coverage report is available on [Coveralls](https://coveralls.io/github/msuret/product-color-matcher).
